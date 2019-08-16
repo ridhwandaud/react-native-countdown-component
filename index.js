@@ -127,8 +127,6 @@ class CountDown extends React.Component {
     return (
       <View style={[
         styles.digitCont,
-        digitStyle,
-        {width: size * 2.3, height: size * 2.6},
       ]}>
         <Text style={[
           styles.digitTxt,
@@ -160,9 +158,9 @@ class CountDown extends React.Component {
     return (
       <View style={styles.doubleDigitCont}>
         <View style={styles.timeInnerCont}>
-          {this.renderDigit(digits)}
+          {digits != '00' && this.renderDigit(digits)}
+          {digits != '00' && this.renderLabel(label)}
         </View>
-        {this.renderLabel(label)}
       </View>
     );
   };
@@ -223,14 +221,13 @@ CountDown.defaultProps = {
   timeToShow: DEFAULT_TIME_TO_SHOW,
   showSeparator: false,
   until: 0,
-  size: 15,
+  size: 12,
   running: true,
 };
 
 const styles = StyleSheet.create({
   timeCont: {
     flexDirection: 'row',
-    justifyContent: 'center',
   },
   timeTxt: {
     color: 'white',
